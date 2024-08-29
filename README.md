@@ -1,8 +1,8 @@
 # My MiniBlog Project
 
-![Django](https://img.shields.io/badge/Django-3.2+-green.svg)
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-4.5+-orange.svg)
+![Django](https://img.shields.io/badge/Django-5+-green.svg)
+![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5+-orange.svg)
 
 ## Description
 
