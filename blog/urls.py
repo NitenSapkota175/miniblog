@@ -9,4 +9,8 @@ urlpatterns = [
     path('login/',views.UserLogin,name="Login"),
     path('signup/',views.UserSignup,name="Signup"),
     path('logout/',views.UserLogout,name="Logout"),
+    path('addpost/',views.AddPost,name="AddPost"),
+    path('updatepost<int:pk>/',views.UpdatePost,name="UpdatePost"),
+    path('deletepost<int:pk>/',views.DeletePost,name="DeletePost")
+
 ]
