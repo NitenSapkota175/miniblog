@@ -32,7 +32,7 @@ def UserSignup(request):
         if request.method == 'POST':
                 form = SignupForm(request.POST)
                 if form.is_valid():
-                    messages.success(request,'You have sccuessfully created your account , please login!')
+                    messages.success(request,'Congrats! You have become an author! Login to create an blog post')
                     form.save()
                     return HttpResponseRedirect('/login/')
 
@@ -55,7 +55,7 @@ def UserLogin(request):
                 user = authenticate(username=uname,password=passwd)
                 if user is not None:
                     login(request,user)
-                    return HttpResponseRedirect('/')   
+                    return HttpResponseRedirect('/dashboard/')   
 
         else:
             form = LoginForm()

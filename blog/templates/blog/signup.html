@@ -3,7 +3,7 @@
 
 {% block content %}
             <div class="col-sm-10">
-                <h3 class="text-white my-5">Singup page</h3>
+                <h3 class="text-white my-5">Become an author</h3>
             </div>
             
             <form action="" method='POST' novalidate>
@@ -13,7 +13,7 @@
                     {% for fm in form%}
                 
                     <div class="form-group">
-                        {{fm.label_tag}} <br> {{fm}} {{fm.error|striptags}} <br>
+                        {{fm.label_tag}} <br> {{fm}} <small class="text-warning"> {{fm.errors|striptags}}</small> <br>
                     </div>
                     
                     {% endfor %}
