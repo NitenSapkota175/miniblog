@@ -3,6 +3,7 @@ from . forms import SignupForm,LoginForm,PostForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from . models import Post
+from django.contrib.auth.models import Group
 
 def Home(request):
     blogs = Post.objects.all()
@@ -21,7 +22,10 @@ def Dashboard(request):
    
     if request.user.is_authenticated:
         posts = Post.objects.all()
-        return render(request,'blog/dashboard.html',{'posts' : posts})
+        user = request.user
+        full_name = user.get_full_name()
+        gps = user.groups.all()
+        return render(request,'blog/dashboard.html',{'posts' : posts , "groups" : gps,"full_name" : full_name})
     else:
         return HttpResponseRedirect('/login/')
 
@@ -35,7 +39,9 @@ def UserSignup(request):
                 form = SignupForm(request.POST)
                 if form.is_valid():
                     messages.success(request,'Congrats! You have become an author! Login to create an blog post')
-                    form.save()
+                    user = form.save()
+                    group = Group.objects.get(name="Author")
+                    user.groups.add(group)
                     return HttpResponseRedirect('/login/')
 
         else:
