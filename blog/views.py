@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from . models import Post
 from django.contrib.auth.models import Group
-
+from django.core.cache import cache
 def Home(request):
     blogs = Post.objects.all()
 
@@ -26,7 +26,9 @@ def Dashboard(request):
         full_name = user.get_full_name()
         gps = user.groups.all()
         ip = request.session.get('ip',0)
-        return render(request,'blog/dashboard.html',{'posts' : posts , "groups" : gps,"full_name" : full_name , 'ip' : ip})
+        ct = cache.get("count" , version = user.pk)
+        context = {'posts' : posts , "groups" : gps,"full_name" : full_name , 'ip' : ip,'ct' : ct}
+        return render(request,'blog/dashboard.html',context)
     else:
         return HttpResponseRedirect('/login/')
 
